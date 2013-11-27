@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Domain.Entities;
 using NHibernate;
 using NHibernate.Criterion;
+using Order = Domain.Entities.Order;
 
 namespace NHibernateMapping
 {
@@ -112,5 +113,16 @@ namespace NHibernateMapping
         }
 
         #endregion
+
+        public void SaveOrderInToDB(Order order)
+        {
+            session.Save(order);
+        }
+
+        public IList<Order> GetOrderFromDBByExample(Order exampleOrder)
+        {
+            var example = Example.Create(exampleOrder);
+            return session.CreateCriteria<Order>().Add(example).List<Order>();
+        }
     }
 }

@@ -1,11 +1,13 @@
 ﻿namespace Domain.Entities
 {
-    class Order
+    public class Order
     {
-        public int OrderId { get; set; }
-        public int Version { get; set; }
-        public string OrderDate { get; set; }
-        public int CustomerId { get; set; }
+        public virtual int OrderId { get; set; }
+        public virtual int Version { get; set; }
+        public virtual string OrderDate { get; set; }
+        public virtual int CustomerId { get; set; }
+
+//        public virtual Customer Customer { get; set; }
     }
 }
     
