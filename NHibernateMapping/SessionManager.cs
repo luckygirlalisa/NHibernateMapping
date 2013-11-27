@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Domain.Entities;
 using NHibernate;
 using NHibernate.Criterion;
@@ -12,6 +13,7 @@ namespace NHibernateMapping
         {
             this.session = session;
         }
+
         #region get data from DB
         public IList<Customer> GetAllCustomer()
         {
@@ -55,6 +57,7 @@ namespace NHibernateMapping
         }
 #endregion
 
+        #region modify data in DB
         public void SaveCustomerInToDB(Customer customer)
         {
             session.Save(customer);
@@ -65,5 +68,49 @@ namespace NHibernateMapping
             session.Delete(customer);
             session.Flush();
         }
+
+        public void UpdateCustomer(Customer customer)
+        {
+            using (ITransaction tx = session.BeginTransaction())
+            {
+                try
+                {
+                    session.Update(customer);
+//                    session.Flush();
+                    tx.Commit();
+                }
+                catch (HibernateException)
+                {
+                    tx.Rollback();
+                    throw;
+                }
+            }
+            
+        }
+
+        public void UpdateCustomer1(Customer sourceCustomer)
+        {
+            session.Update(sourceCustomer);
+            session.Flush();
+        }
+
+        public void SaveOrUpdateCustomer(Customer customer)
+        {
+            using (ITransaction tx = session.BeginTransaction())
+            {
+                try
+                {
+                    session.SaveOrUpdate(customer);
+                    tx.Commit();
+                }
+                catch (HibernateException)
+                {
+                    tx.Rollback();
+                    throw;
+                }
+            }
+        }
+
+        #endregion
     }
 }
