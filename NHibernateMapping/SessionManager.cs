@@ -47,6 +47,23 @@ namespace NHibernateMapping
             Example example = Example.Create(customerSample).IgnoreCase();
             return session.CreateCriteria<Customer>().Add(example).List<Customer>();
         }
+
+
+        public Customer GetCustomerById(int id)
+        {
+            return session.Get<Customer>(id);
+        }
 #endregion
+
+        public void SaveCustomerInToDB(Customer customer)
+        {
+            session.Save(customer);
+        }
+
+        public void DeleteCustomer(Customer customer)
+        {
+            session.Delete(customer);
+            session.Flush();
+        }
     }
 }
