@@ -9,10 +9,8 @@
     </id>
     <property name ="Version"/>
     <property name ="OrderDate"/>
-    <property name ="CustomerId"/>
 
-<!--    <many-to-one name ="Customer" column="Customer"-->
-<!--                 class="Domain.Entities.Customer,Domain"-->
-<!--                 foreign-key="FK_CustomerId"/>-->
+    <many-to-one name ="Customer" column="CustomerId"
+                 class="Domain.Entities.Customer,Domain"/>
   </class>
 </hibernate-mapping>

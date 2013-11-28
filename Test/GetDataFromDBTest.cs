@@ -5,7 +5,7 @@ using NHibernate.Util;
 using NHibernateMapping;
 using NUnit.Framework;
 
-namespace MappingTest
+namespace Test
 {
     [TestFixture]
     class GetCustomerFromDBTest

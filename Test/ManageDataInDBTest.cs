@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using Domain.Entities;
 using NHibernate;
-using NHibernate.Util;
 using NHibernateMapping;
 using NUnit.Framework;
+
 
 namespace Test
 {

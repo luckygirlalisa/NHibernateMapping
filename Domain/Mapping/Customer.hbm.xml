@@ -10,9 +10,10 @@
     <property name ="FirstName"/>
     <property name ="LastName"/>
   
-  <set name ="Orders" table="'Order'" generic="true" inverse="true">
+  <bag name ="Orders" table="[Order]" generic="true" inverse="true">
     <key column="CustomerId" foreign-key="FK_CustomerId"/>
     <one-to-many class="Domain.Entities.Order, Domain"/>
-  </set>
+  </bag>
+  
   </class>
 </hibernate-mapping>
